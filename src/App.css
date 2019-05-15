@@ -1,6 +1,12 @@
 .App {
   text-align: center;
 }
+.App h2{
+  font-weight: bold;
+  font-size: 55px;
+  letter-spacing: 12px;
+  margin-top: 0;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

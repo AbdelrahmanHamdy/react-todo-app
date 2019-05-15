@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React , {Component} from 'react';
 import './App.css';
+import TodoItems from './components/TodoItems/TodoItems';
+import AddItem from './components/AddItem/AddItem';
 
-function App() {
+class App extends Component {
+  state={
+    items:[{id:1,name:"Jone",age:22},
+    {id:2,name:"Androu",age:32},
+    {id:3,name:"tom",age:62}]
+  };
+
+  deleteItem=(id)=>{
+    let items = this.state.items.filter(item =>{
+      return item.id!== id;
+    })
+    this.setState({items})
+
+  }
+
+
+   addItem=  (item) => {
+    item.id=Math.random();
+    let items = this.state.items;
+    items.push(item);
+    this.setState({items});
+  }
+
+ render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+    <h2 className="text-center animated slideInDown">To Do App</h2>
+    <TodoItems items = {this.state.items} deleteItem={this.deleteItem}  lenght={this.state.items.length}/>
+    <AddItem add={this.addItem} />
     </div>
   );
+ }
 }
 
 export default App;
